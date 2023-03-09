@@ -1,5 +1,4 @@
-import axios from "axios";
-import { useEffect, useContext } from "react";
+import { useContext } from "react";
 import { CardCars } from "./CardCars";
 import { fromUnixTime, format } from 'date-fns';
 import Slider from "react-slick";
@@ -7,6 +6,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 import noImage from "../assets/noImage.png";
+
 import { AppContext } from "../App";
 import { Header } from "./Header";
 
@@ -27,9 +27,12 @@ export function ListCarsByBrand() {
 
       {Object.entries(
         listCar.reduce((acc, cars) => {
+          // @ts-ignore
           if (!acc[cars.marca_nome]) {
+            // @ts-ignore
             acc[cars.marca_nome] = [];
           }
+          // @ts-ignore
           acc[cars.marca_nome].push(cars);
           return acc;
         }, {})
@@ -37,7 +40,8 @@ export function ListCarsByBrand() {
         <div key={marca}>
           <h1 className="text-white mb-4 mt-12 flex justify-center">{marca}</h1>
           <Slider {...settingsByBrand} className="min-[320px]:w-full md:w-2/5 mx-auto">
-            {carros.map((car) => {
+            {// @ts-ignore 
+              carros.map((car) => {
               const date = fromUnixTime(car.timestamp_cadastro);
               const formattedDate = format(date, 'dd/MM/yyyy');
 

@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useContext } from "react";
 import { CardCars } from "./CardCars";
 import { fromUnixTime, format } from 'date-fns';
@@ -54,6 +53,7 @@ export function ListCars() {
       <h1 className="text-white font-bold text-2xl flex justify-center mt-8 mb-6">Lista de Carros</h1>
       <Slider {...settings}>
         {listCar.map((cars) => {
+            // @ts-ignore
             const date = fromUnixTime(cars.timestamp_cadastro);
             const formattedDate = format(date, 'dd/MM/yyyy');
 

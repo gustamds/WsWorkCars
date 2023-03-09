@@ -14,7 +14,7 @@ export function ListCarsByLastFiveRegister() {
   function getRecentCars() {
     const lastFiveRegisterCars = listCar.sort(
         (car1, car2) => 
-        car2.timestamp_cadastro - car1.timestamp_cadastro
+        parseInt(car2.timestamp_cadastro) - parseInt(car1.timestamp_cadastro)
     );
     return lastFiveRegisterCars.slice(0,5);
   }
@@ -60,6 +60,7 @@ export function ListCarsByLastFiveRegister() {
       <h1 className="text-white font-bold text-2xl flex justify-center mb-6 mt-8">Últimos 5 Cadastrados</h1>
       <Slider {...settings}>
         {recentCars.map((cars) => {
+            // @ts-ignore
             const date = fromUnixTime(cars.timestamp_cadastro);
             const formattedDate = format(date, 'dd/MM/yyyy');
 

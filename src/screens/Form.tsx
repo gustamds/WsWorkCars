@@ -24,6 +24,7 @@ export function Form() {
 
   const { listCar, setListCar } = useContext(AppContext)
 
+  // @ts-ignore
   function createNewCar(event) {
     const now = new Date();
     const timeStamp = Math.floor(now.getTime() / 1000);
@@ -31,16 +32,19 @@ export function Form() {
     const uuid = uuidv4();
     const parsedId = parseInt(uuid.replace(/-/g, ''), 16);
 
+    // @ts-ignore
     setListCar([...listCar, {
       id: parsedId,
       src: carImage,
       nome_modelo: carModel,
       marca_nome: carBrand,
+      // @ts-ignore
       ano: carYear,
       combustivel: carFuel,
       cor: carColor,
       num_portas: carDoor,
       valor_fipe: carValue,
+      // @ts-ignore
       timestamp_cadastro: timeStamp,
     }])
 

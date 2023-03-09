@@ -12,6 +12,7 @@ export interface CardCarsProps {
   timestamp_cadastro: string;
   valor_fipe: number;
   src: string;
+  [key: string]: any;
 }
 
 export function CardCars({

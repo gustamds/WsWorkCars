@@ -52,6 +52,7 @@ export function ListCarsByCheapestCars() {
       <h1 className="text-white font-bold text-2xl flex justify-center mb-6 mt-8">Os 3 Carros Mais Baratos</h1>
       <Slider {...settings}>
         {carsMoreCheapest.map((cars) => {
+            // @ts-ignore
             const date = fromUnixTime(cars.timestamp_cadastro);
             const formattedDate = format(date, 'dd/MM/yyyy');
 

@@ -1,4 +1,9 @@
-export function SelectBrandCarsForm({ selectedBrand, setSelectedBrand }) {
+interface SelectBrandCarsFormProps {
+    selectedBrand: string;
+    setSelectedBrand: (brand: string) => void;
+}
+
+export function SelectBrandCarsForm({ selectedBrand, setSelectedBrand }:SelectBrandCarsFormProps) {
     const carBrands = [
         {id: 1, brand: "Abarth" , valueBrand: "Abarth"},
         {id: 2, brand: "Aiways", valueBrand: "Aiways"},

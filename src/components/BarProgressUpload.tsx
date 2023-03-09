@@ -1,4 +1,8 @@
-export function BarProgressUpload({ progress }) {
+interface BarProgressUploadProps {
+  progress: number;
+}
+
+export function BarProgressUpload({ progress }: BarProgressUploadProps) {
   return (
     <div className="relative pt-1">
       <div className="flex mb-2 items-center justify-between">

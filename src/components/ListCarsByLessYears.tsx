@@ -7,11 +7,11 @@ import "slick-carousel/slick/slick-theme.css";
 
 import noImage from "../assets/noImage.png";
 import { AppContext } from "../App";
-import { Header } from "./Header";
 
 export function ListCarsByLessYears() {
   const {listCar} = useContext(AppContext)
 
+  // @ts-ignore
   const carsLessYears = listCar.filter(carros => parseInt(carros.ano) < 2005);
 
   const settings = {
@@ -53,6 +53,7 @@ export function ListCarsByLessYears() {
       <h1 className="text-white font-bold text-2xl flex justify-center mb-6 mt-8">Carros Abaixo de 2005</h1>
       <Slider {...settings}>
         {carsLessYears.map((cars) => {
+            // @ts-ignore
             const date = fromUnixTime(cars.timestamp_cadastro);
             const formattedDate = format(date, 'dd/MM/yyyy');
 

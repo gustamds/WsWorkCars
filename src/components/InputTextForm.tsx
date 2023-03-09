@@ -1,4 +1,10 @@
-export function InputTextForm({ labelName, changeText, setChangeText }){
+interface InputTextFormProps{
+  labelName: string;
+  changeText: string;
+  setChangeText: (value: string) => void;
+};
+
+export function InputTextForm({ labelName, changeText, setChangeText } :InputTextFormProps){
     return(
         <div className="relative z-0 w-full mb-6 group">
           <input

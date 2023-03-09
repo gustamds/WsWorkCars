@@ -1,4 +1,10 @@
-export function InputNumberForm({ labelName, numberChange, setNumberChange }){
+interface InputNumberFormProps {
+  labelName: string;
+  numberChange: number;
+  setNumberChange: (value: number) => void;
+}
+
+export function InputNumberForm({ labelName, numberChange, setNumberChange }:InputNumberFormProps){
 
     return(
         <div className="relative z-0 w-full mb-6 group">
@@ -8,7 +14,8 @@ export function InputNumberForm({ labelName, numberChange, setNumberChange }){
             id="value_car"
             className="block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
             placeholder=" "
-            onChange={(event) => setNumberChange(event.target.value)}
+            // @ts-ignore
+            onChange={(event) => setNumberChange(event.target.value)} 
             value={numberChange}
             required
           />

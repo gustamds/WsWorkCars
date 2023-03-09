@@ -2,7 +2,13 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { BarProgressUpload } from "./BarProgressUpload";
 
-export function CarImageForm({ imageSelect, setImageSelect, onImageSelected }) {
+interface CarImageFormProps {
+  imageSelect: string;
+  setImageSelect: (image: string) => void;
+  onImageSelected: (image: string) => void;
+}
+
+export function CarImageForm({ imageSelect, setImageSelect, onImageSelected }:CarImageFormProps) {
   const [imageSelected, setImageSelected] = useState(imageSelect);
   const [uploadProgress, setUploadProgress] = useState(0);
   const [showProgressBar, setShowProgressBar] = useState(false);
@@ -11,7 +17,7 @@ export function CarImageForm({ imageSelect, setImageSelect, onImageSelected }) {
     setImageSelected(imageSelect);
   }, [imageSelect]);
 
-  function uploadImage(files) {
+  function uploadImage(files : FileList) {
     if (!files.length) return;
 
     const formData = new FormData();
@@ -21,7 +27,7 @@ export function CarImageForm({ imageSelect, setImageSelect, onImageSelected }) {
     axios
       .post("https://api.cloudinary.com/v1_1/dxxsxnxn7/image/upload", formData, {
         onUploadProgress: function (progressEvent) {
-          const percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
+          const percentCompleted = Math.round((progressEvent.loaded * 100) / (progressEvent.total ?? 0));
           setUploadProgress(percentCompleted);
         },
       })
@@ -47,7 +53,7 @@ export function CarImageForm({ imageSelect, setImageSelect, onImageSelected }) {
         id="file_input"
         type="file"
         onChange={(event) => {
-          uploadImage(event.target.files);
+          uploadImage(event.target.files!);
         }}
       />
       <img className={`mb-4 mt-4 w-60 h-auto ${!imageSelected ? "hidden" : ""}`} src={imageSelected} alt="Car Image" />
