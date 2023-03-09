@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.slick-dots li.slick-active button:before, .slick-dots li button:before {
+  color: white;
+}
+
+input[type=number]::-webkit-inner-spin-button {
+  opacity: 1;
+}
+
+html{
+  --tw-bg-opacity: 1;
+  background-color: rgb(15 23 42 / var(--tw-bg-opacity));
+}
