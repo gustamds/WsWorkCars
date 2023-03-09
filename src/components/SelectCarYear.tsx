@@ -1,4 +1,9 @@
-export function SelectCarYear({ selectedYear, setSelectedYear }){
+interface SelectCarYearProps {
+    selectedYear: string;
+    setSelectedYear: (brand: string) => void;
+}
+
+export function SelectCarYear({ selectedYear, setSelectedYear }: SelectCarYearProps){
     const currentYear = new Date().getFullYear();
     const years = Array.from(new Array(50), (val, index) => currentYear - index);
 
