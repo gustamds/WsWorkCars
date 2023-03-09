@@ -1,5 +1,5 @@
-import { v4 as uuidv4 } from 'uuid';
-import { toast, ToastContainer } from 'react-toastify';
+import { v4 as uuidv4 } from "uuid";
+import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import { useState, useContext } from "react";
@@ -9,8 +9,8 @@ import { InputNumberForm } from "../components/InputNumberForm";
 import { InputTextForm } from "../components/InputTextForm";
 import { SelectBrandCarsForm } from "../components/SelectBrandCarsForm";
 import { SelectCarYear } from "../components/SelectCarYear";
-import { AppContext } from '../App';
-import { Header } from '../components/Header';
+import { AppContext } from "../App";
+import { Header } from "../components/Header";
 
 export function Form() {
   const [carImage, setCarImage] = useState("");
@@ -22,42 +22,62 @@ export function Form() {
   const [carBrand, setCarBrand] = useState("");
   const [carYear, setCarYear] = useState("");
 
-  const { listCar, setListCar } = useContext(AppContext)
+  const { listCar, setListCar } = useContext(AppContext);
 
   // @ts-ignore
   function createNewCar(event) {
+    event?.preventDefault();
+  
+    // Validando se os estados não estão vazios
+    if (!carImage || !carModel || !carColor || !carValue || !carDoor || !carFuel || !carBrand || !carYear) {
+      toast.error("Por favor, preencha todos os campos!", {
+        position: "bottom-left",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+      return;
+    }
+  
     const now = new Date();
     const timeStamp = Math.floor(now.getTime() / 1000);
-
+  
     const uuid = uuidv4();
-    const parsedId = parseInt(uuid.replace(/-/g, ''), 16);
-
-    // @ts-ignore
-    setListCar([...listCar, {
-      id: parsedId,
-      src: carImage,
-      nome_modelo: carModel,
-      marca_nome: carBrand,
+    const parsedId = parseInt(uuid.replace(/-/g, ""), 16);
+  
+    setListCar([
       // @ts-ignore
-      ano: carYear,
-      combustivel: carFuel,
-      cor: carColor,
-      num_portas: carDoor,
-      valor_fipe: carValue,
-      // @ts-ignore
-      timestamp_cadastro: timeStamp,
-    }])
-
-    setCarImage('');
-    setCarModel('');
-    setCarColor('');
+      ...listCar,
+      {
+        id: parsedId,
+        src: carImage,
+        nome_modelo: carModel,
+        marca_nome: carBrand,
+        // @ts-ignore
+        ano: carYear,
+        combustivel: carFuel,
+        cor: carColor,
+        num_portas: carDoor,
+        valor_fipe: carValue,
+        // @ts-ignore
+        timestamp_cadastro: timeStamp,
+      },
+    ]);
+  
+    setCarImage("");
+    setCarModel("");
+    setCarColor("");
     setCarValue(0);
     setCarDoor(0);
-    setCarFuel('');
-    setCarBrand('');
-    setCarYear('');  
-
-    toast.success('Veículo adicionado com sucesso!', {
+    setCarFuel("");
+    setCarBrand("");
+    setCarYear("");
+  
+    toast.success("Veículo adicionado com sucesso!", {
       position: "bottom-left",
       autoClose: 5000,
       hideProgressBar: false,
@@ -67,13 +87,11 @@ export function Form() {
       progress: undefined,
       theme: "dark",
     });
-
-    event?.preventDefault();
   }
 
   return (
     <>
-      <Header/>
+      <Header />
       <h1 className="text-white font-bold text-2xl flex justify-center mt-8">
         Cadastre Seu Carro Aqui:
       </h1>
@@ -139,7 +157,7 @@ export function Form() {
         >
           Cadastrar Meu Carro
         </button>
-        <ToastContainer/>
+        <ToastContainer />
       </form>
     </>
   );
