@@ -27,6 +27,10 @@ funcionando (Heroku, Aws, etc)
 A parte de upload para as imagens na nuvem está sendo feita pelo Cloudnary --> https://cloudinary.com/, e o 
 Proxy que está sendo utilizado para enviar as requisições para a API está hospedado no Railway --> https://railway.app/
 
+**Link da aplicação: https://ws-work-cars.vercel.app/
+
+**Link da documentação: https://grass-form-d3c.notion.site/Documenta-o-ListCarsByBrand-3c1358431fea4c9097c7df166dd52032
+
 **Comandos básicos para rodar o projeto:
 
 -Clonar repositório
